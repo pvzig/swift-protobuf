@@ -27,7 +27,9 @@ fileprivate func serializeAnyJSON(
 ) throws -> String {
   var visitor = try JSONEncodingVisitor(type: type(of: message), options: options)
   visitor.startObject(message: message)
-  visitor.encodeField(name: "@type", stringValue: typeURL)
+  if !options.omitTypeAnnotation {
+    visitor.encodeField(name: "@type", stringValue: typeURL)
+  }
   if let m = message as? _CustomJSONCodable {
     let value = try m.encodedJSONString(options: options)
     visitor.encodeField(name: "value", jsonText: value)

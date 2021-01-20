@@ -22,5 +22,8 @@ public struct JSONEncodingOptions {
   /// By default they are converted to JSON(lowerCamelCase) names.
   public var preserveProtoFieldNames: Bool = false
 
+  /// Wether to include the @type annotation field
+  public var omitTypeAnnotation: Bool = false
+  
   public init() {}
 }
